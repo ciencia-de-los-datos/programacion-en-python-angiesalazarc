@@ -186,7 +186,6 @@ def pregunta_07():
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
     a dicho valor de la columna 2.
-
     Rta/
     [
         (0, ["C"]),
@@ -200,9 +199,20 @@ def pregunta_07():
         (8, ["E", "D", "E", "A", "B"]),
         (9, ["A", "B", "E", "A", "A", "C"]),
     ]
-
     """
-    return
+
+    dic4 = {}
+    for num2 in colums:
+      if num2[1] in dic4.keys():
+        dic4[num2[1]].append(num2[0])
+      else:
+        dic4[num2[1]] = [num2[0]]
+
+    dic4
+    tupla3 = [(key, valor) for key, valor in dic4.items()]
+    tupla3.sort()
+    
+    return tupla3
 
 
 def pregunta_08():
@@ -227,8 +237,21 @@ def pregunta_08():
     ]
 
     """
-    return
 
+    dic5 = {}
+
+    for num3 in colums:
+      if num3[1] in dic5.keys():
+        if num3[0] not in dic5[num3[1]]:
+          dic5[num3[1]].append(num3[0])
+      else:
+        dic5[num3[1]] = [num3[0]]
+
+    dic5
+    tupla4 = [(key, valor) for key, valor in dic5.items()]
+    tupla4.sort()
+    
+    return tupla4
 
 def pregunta_09():
     """
