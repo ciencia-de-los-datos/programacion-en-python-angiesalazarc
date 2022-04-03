@@ -94,7 +94,6 @@ def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
-
     Rta/
     [
         ("01", 3),
@@ -110,9 +109,21 @@ def pregunta_04():
         ("11", 2),
         ("12", 3),
     ]
-
     """
-    return
+    x = [i[2].split('-') for i in colums]
+
+    dic2 = {}
+
+    for month in x:
+        if month[1] in dic2.keys():
+            dic2[month[1]] = dic2[month[1]] +1 
+        else:
+            dic2[month[1]] = 1
+
+    tupla2 = list(zip(dic2.keys(), dic2.values()))
+    tupla2.sort()
+    
+    return tupla2
 
 
 def pregunta_05():
@@ -130,7 +141,19 @@ def pregunta_05():
     ]
 
     """
-    return
+    dic3 = {}
+
+    for letter1 in colums:
+      letter1[1] = int(letter1[1])
+      if letter1[0] in dic3.keys():
+        dic3[letter1[0]].append(letter1[1])
+      else:
+        dic3[letter1[0]] = [letter1[1]]
+
+    dic3 = [(key, max(valor), min(valor)) for key, valor in dic3.items()]
+    dic3.sort()
+    
+    return dic3
 
 
 def pregunta_06():
