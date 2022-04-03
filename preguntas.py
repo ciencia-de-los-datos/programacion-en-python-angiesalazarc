@@ -64,20 +64,30 @@ def pregunta_02():
 
 def pregunta_03():
     """
-    Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
-    de tuplas (letra, suma) ordendas alfabeticamente.
-
-    Rta/
-    [
-        ("A", 53),
-        ("B", 36),
-        ("C", 27),
-        ("D", 31),
-        ("E", 67),
-    ]
-
+        3Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
+        de tuplas (letra, suma) ordendas alfabeticamente.
+        Rta/
+        [
+            ("A", 53),
+            ("B", 36),
+            ("C", 27),
+            ("D", 31),
+            ("E", 67),
+        ]
     """
-    return
+    
+    dic1 = {}
+
+    for sum1 in colums:
+      if sum1[0] in dic1.keys():
+        dic1[sum1[0]] = dic1[sum1[0]] + int(sum1[1])
+      else:
+        dic1[sum1[0]] = int(sum1[1])
+      
+    tupla1 = list(zip(dic1.keys(), dic1.values()))
+    tupla1.sort()
+    
+    return tupla1
 
 
 def pregunta_04():
