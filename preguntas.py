@@ -265,7 +265,7 @@ def pregunta_08():
         dic5[num3[1]] = [num3[0]]
 
     dic5
-    tupla4 = [(key, valor) for key, valor in dic5.items()]
+    tupla4 = [(key, sorted(valor)) for key, valor in dic5.items()]
     tupla4.sort()
     
     return tupla4
