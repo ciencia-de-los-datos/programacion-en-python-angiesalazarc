@@ -158,28 +158,45 @@ def pregunta_05():
 
 def pregunta_06():
     """
-    La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
-    una clave y el valor despues del caracter `:` corresponde al valor asociado a la
-    clave. Por cada clave, obtenga el valor asociado mas pequeño y el valor asociado mas
-    grande computados sobre todo el archivo.
-
-    Rta/
-    [
-        ("aaa", 1, 9),
-        ("bbb", 1, 9),
-        ("ccc", 1, 10),
-        ("ddd", 0, 9),
-        ("eee", 1, 7),
-        ("fff", 0, 9),
-        ("ggg", 3, 10),
-        ("hhh", 0, 9),
-        ("iii", 0, 9),
-        ("jjj", 5, 17),
-    ]
+        6La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
+        una clave y el valor despues del caracter `:` corresponde al valor asociado a la
+        clave. Por cada clave, obtenga el valor asociado mas pequeño y el valor asociado mas
+        grande computados sobre todo el archivo.
+        Rta/
+        [
+            ("aaa", 1, 9),
+            ("bbb", 1, 9),
+            ("ccc", 1, 10),
+            ("ddd", 0, 9),
+            ("eee", 1, 7),
+            ("fff", 0, 9),
+            ("ggg", 3, 10),
+            ("hhh", 0, 9),
+            ("iii", 0, 9),
+            ("jjj", 5, 17),
+        ]
 
     """
-    return
+    data = [row[4].split(',') for row in colums]
+    data = [item for sublist in data for item in sublist]
 
+    dic7 = {}
+
+    for letter7 in data:
+
+      codigo = letter7.split(':')[0]
+      numero = int(letter7.split(':')[1])
+
+      if codigo in dic7.keys():
+        dic7[codigo].append(numero)
+
+      else:
+        dic7[codigo] = [numero]
+
+    dic7 = [(key, min(valor), max(valor)) for key, valor in dic7.items()]
+    dic7.sort()
+
+    return dic7
 
 def pregunta_07():
     """
