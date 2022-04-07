@@ -198,6 +198,7 @@ def pregunta_06():
 
     return dic7
 
+  
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
@@ -268,12 +269,12 @@ def pregunta_08():
     tupla4.sort()
     
     return tupla4
+  
 
 def pregunta_09():
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
-
     Rta/
     {
         "aaa": 13,
@@ -287,11 +288,22 @@ def pregunta_09():
         "iii": 18,
         "jjj": 18,
     }
-
     """
-    return
+    data = [row[4].split(',') for row in colums]
+    data = [item for sublist in data for item in sublist]
 
+    dic8 = {}
+    for letter8 in data:
+      codigo = letter8.split(':')[0]
 
+      if codigo in dic8.keys():
+        dic8[codigo] = dic8[codigo] +1 
+      else:
+        dic8[codigo] = 1
+      
+    return dic8
+
+  
 def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
