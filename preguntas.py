@@ -317,7 +317,6 @@ def pregunta_11():
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
-
     Rta/
     {
         "a": 122,
@@ -328,10 +327,23 @@ def pregunta_11():
         "f": 134,
         "g": 35,
     }
-
-
     """
-    return
+    list4 = []
+    for p in colums:
+      list4.append([p[1], p[3].split(",")])
+
+    dic6 ={}
+    for row in list4:
+        for p in row[1]:
+            if p in dic6:
+                dic6[p] += int(row[0])
+            else:
+                dic6[p] = int(row[0])
+
+    tupla5 = list(zip(dic6.keys(), dic6.values()))
+    tupla5.sort()
+
+    return tupla5
 
 
 def pregunta_12():
