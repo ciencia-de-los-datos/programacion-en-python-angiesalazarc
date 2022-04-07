@@ -350,11 +350,11 @@ def pregunta_11():
 
     dic6 ={}
     for row in list4:
-        for p in row[1]:
-            if p in dic6:
-                dic6[p] += int(row[0])
-            else:
-                dic6[p] = int(row[0])
+      for p in row[1]:
+        if p in dic6:
+          dic6[p] += int(row[0])
+        else:
+          dic6[p] = int(row[0])
 
     tupla5 = list(zip(dic6.keys(), dic6.values()))
     tupla5.sort()
