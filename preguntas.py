@@ -219,11 +219,18 @@ def pregunta_07():
     ]
     """
 
+    listnum = [int(f[1]) for f in colums]
+    listlet = [g[0] for g in colums]
+    listcom = list(zip(listlet, listnum))
+
     dic4 = {}
-    for num2 in colums:
+
+    for num2 in listcom:
       if num2[1] in dic4.keys():
         dic4[num2[1]].append(num2[0])
+
       else:
+
         dic4[num2[1]] = [num2[0]]
 
     tupla3 = list(zip(dic4.keys(), dic4.values()))
