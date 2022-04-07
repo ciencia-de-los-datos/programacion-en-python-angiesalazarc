@@ -308,7 +308,6 @@ def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
-
     Rta/
     [
         ("E", 3, 5),
@@ -319,10 +318,15 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]
-
-
     """
-    return
+    t = [len(m[3].replace(",","")) for m in colums]
+    u = [len(n[4].split(",")) for n in colums]
+
+    list3 = [f[0] for f in colums]
+
+    listfin = list(zip(list3, t, u))
+    
+    return listfin
 
 
 def pregunta_11():
