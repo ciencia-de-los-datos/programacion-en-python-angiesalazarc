@@ -252,22 +252,22 @@ def pregunta_08():
         (8, ["A", "B", "D", "E"]),
         (9, ["A", "B", "C", "E"]),
     ]
-
     """
 
-    dic5 = {}
+    dic9 = {}
 
     for num3 in colums:
-      if num3[1] in dic5.keys():
-        if num3[0] not in dic5[num3[1]]:
-          dic5[num3[1]].append(num3[0])
-      else:
-        dic5[num3[1]] = [num3[0]]
+      if num3[1] in dic9.keys():
 
-    dic5
-    tupla4 = [(key, sorted(valor)) for key, valor in dic5.items()]
+        if num3[0] not in dic9[num3[1]]:
+          dic9[num3[1]].append(num3[0])
+          
+      else:
+        dic9[num3[1]] = [num3[0]]
+
+    tupla4 = [(key, sorted(valor)) for key, valor in dic9.items()]
     tupla4.sort()
-    
+
     return tupla4
   
 
