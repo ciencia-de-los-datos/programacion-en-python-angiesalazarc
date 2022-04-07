@@ -356,10 +356,7 @@ def pregunta_11():
         else:
           dic6[p] = int(row[0])
 
-    tupla5 = list(zip(dic6.keys(), dic6.values()))
-    tupla5.sort()
-
-    return tupla5
+    return dic6
 
 
 def pregunta_12():
@@ -377,4 +374,28 @@ def pregunta_12():
     }
 
     """
-    return
+
+    data1 = [row[4].split(',') for row in colums]
+
+    list9 = []
+
+    numero1=0
+    for letter9 in data1:
+      for r in letter9:
+        numero = int(r.split(':')[1])
+        numero1 += numero
+      list9.append(numero1)
+      numero1=0
+
+    list10 = [f[0] for f in colums]
+    listot = list(zip(list10, list9))
+
+    dic9 = {}
+
+    for sum2 in listot:
+      if sum2[0] in dic9.keys():
+        dic9[sum2[0]] = dic9[sum2[0]] + (sum2[1])
+      else:  
+        dic9[sum2[0]] = (sum2[1])
+
+    return dic9
