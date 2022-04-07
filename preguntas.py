@@ -225,8 +225,7 @@ def pregunta_07():
       else:
         dic4[num2[1]] = [num2[0]]
 
-    dic4
-    tupla3 = [(key, valor) for key, valor in dic4.items()]
+    tupla3 = list(zip(dic4.keys(), dic4.values()))
     tupla3.sort()
     
     return tupla3
