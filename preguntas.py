@@ -260,15 +260,18 @@ def pregunta_08():
         (9, ["A", "B", "C", "E"]),
     ]
     """
+    listnum = [int(f[1]) for f in colums]
+    listlet = [g[0] for g in colums]
+    listcom = list(zip(listlet, listnum))
 
     dic9 = {}
 
-    for num3 in colums:
+    for num3 in listcom:
       if num3[1] in dic9.keys():
 
         if num3[0] not in dic9[num3[1]]:
           dic9[num3[1]].append(num3[0])
-          
+
       else:
         dic9[num3[1]] = [num3[0]]
 
