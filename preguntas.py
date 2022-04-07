@@ -13,6 +13,13 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 
+import csv
+
+with open("data.csv",newline='')as f:
+  datos = csv.reader(f, delimiter='\t')
+  colums = list(datos)
+
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -21,50 +28,72 @@ def pregunta_01():
     214
 
     """
-    return
+    suma=0
+    for var in colums:
+      suma+=int(var[1])
+      
+    return suma
 
 
 def pregunta_02():
     """
-    Retorne la cantidad de registros por cada letra de la primera columna como la lista
-    de tuplas (letra, cantidad), ordendas alfabéticamente.
-
-    Rta/
-    [
-        ("A", 8),
-        ("B", 7),
-        ("C", 5),
-        ("D", 6),
-        ("E", 14),
-    ]
-
+        2Retorne la cantidad de registros por cada letra de la primera columna como la lista
+        de tuplas (letra, cantidad), ordendas alfabéticamente.
+        Rta/
+        [
+            ("A", 8),
+            ("B", 7),
+            ("C", 5),
+            ("D", 6),
+            ("E", 14),
+        ]
     """
-    return
+
+    dic = {}
+    for letter in colums:
+        if letter[0] in dic.keys():
+            dic[letter[0]] = dic[letter[0]] +1 
+        else:
+            dic[letter[0]] = 1
+
+    tupla = list(zip(dic.keys(), dic.values()))
+    tupla.sort()
+
+    return tupla
 
 
 def pregunta_03():
     """
-    Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
-    de tuplas (letra, suma) ordendas alfabeticamente.
-
-    Rta/
-    [
-        ("A", 53),
-        ("B", 36),
-        ("C", 27),
-        ("D", 31),
-        ("E", 67),
-    ]
-
+        3Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
+        de tuplas (letra, suma) ordendas alfabeticamente.
+        Rta/
+        [
+            ("A", 53),
+            ("B", 36),
+            ("C", 27),
+            ("D", 31),
+            ("E", 67),
+        ]
     """
-    return
+    
+    dic1 = {}
+
+    for sum1 in colums:
+      if sum1[0] in dic1.keys():
+        dic1[sum1[0]] = dic1[sum1[0]] + int(sum1[1])
+      else:
+        dic1[sum1[0]] = int(sum1[1])
+      
+    tupla1 = list(zip(dic1.keys(), dic1.values()))
+    tupla1.sort()
+    
+    return tupla1
 
 
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
-
     Rta/
     [
         ("01", 3),
@@ -80,9 +109,21 @@ def pregunta_04():
         ("11", 2),
         ("12", 3),
     ]
-
     """
-    return
+    x = [i[2].split('-') for i in colums]
+
+    dic2 = {}
+
+    for month in x:
+        if month[1] in dic2.keys():
+            dic2[month[1]] = dic2[month[1]] +1 
+        else:
+            dic2[month[1]] = 1
+
+    tupla2 = list(zip(dic2.keys(), dic2.values()))
+    tupla2.sort()
+    
+    return tupla2
 
 
 def pregunta_05():
@@ -100,40 +141,69 @@ def pregunta_05():
     ]
 
     """
-    return
+    dic3 = {}
+
+    for letter1 in colums:
+      letter1[1] = int(letter1[1])
+      if letter1[0] in dic3.keys():
+        dic3[letter1[0]].append(letter1[1])
+      else:
+        dic3[letter1[0]] = [letter1[1]]
+
+    dic3 = [(key, max(valor), min(valor)) for key, valor in dic3.items()]
+    dic3.sort()
+    
+    return dic3
 
 
 def pregunta_06():
     """
-    La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
-    una clave y el valor despues del caracter `:` corresponde al valor asociado a la
-    clave. Por cada clave, obtenga el valor asociado mas pequeño y el valor asociado mas
-    grande computados sobre todo el archivo.
-
-    Rta/
-    [
-        ("aaa", 1, 9),
-        ("bbb", 1, 9),
-        ("ccc", 1, 10),
-        ("ddd", 0, 9),
-        ("eee", 1, 7),
-        ("fff", 0, 9),
-        ("ggg", 3, 10),
-        ("hhh", 0, 9),
-        ("iii", 0, 9),
-        ("jjj", 5, 17),
-    ]
+        6La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
+        una clave y el valor despues del caracter `:` corresponde al valor asociado a la
+        clave. Por cada clave, obtenga el valor asociado mas pequeño y el valor asociado mas
+        grande computados sobre todo el archivo.
+        Rta/
+        [
+            ("aaa", 1, 9),
+            ("bbb", 1, 9),
+            ("ccc", 1, 10),
+            ("ddd", 0, 9),
+            ("eee", 1, 7),
+            ("fff", 0, 9),
+            ("ggg", 3, 10),
+            ("hhh", 0, 9),
+            ("iii", 0, 9),
+            ("jjj", 5, 17),
+        ]
 
     """
-    return
+    data = [row[4].split(',') for row in colums]
+    data = [item for sublist in data for item in sublist]
 
+    dic7 = {}
 
+    for letter7 in data:
+
+      codigo = letter7.split(':')[0]
+      numero = int(letter7.split(':')[1])
+
+      if codigo in dic7.keys():
+        dic7[codigo].append(numero)
+
+      else:
+        dic7[codigo] = [numero]
+
+    dic7 = [(key, min(valor), max(valor)) for key, valor in dic7.items()]
+    dic7.sort()
+
+    return dic7
+
+  
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
     a dicho valor de la columna 2.
-
     Rta/
     [
         (0, ["C"]),
@@ -147,9 +217,26 @@ def pregunta_07():
         (8, ["E", "D", "E", "A", "B"]),
         (9, ["A", "B", "E", "A", "A", "C"]),
     ]
-
     """
-    return
+
+    listnum = [int(f[1]) for f in colums]
+    listlet = [g[0] for g in colums]
+    listcom = list(zip(listlet, listnum))
+
+    dic4 = {}
+
+    for num2 in listcom:
+      if num2[1] in dic4.keys():
+        dic4[num2[1]].append(num2[0])
+
+      else:
+
+        dic4[num2[1]] = [num2[0]]
+
+    tupla3 = list(zip(dic4.keys(), dic4.values()))
+    tupla3.sort()
+    
+    return tupla3
 
 
 def pregunta_08():
@@ -172,16 +259,32 @@ def pregunta_08():
         (8, ["A", "B", "D", "E"]),
         (9, ["A", "B", "C", "E"]),
     ]
-
     """
-    return
+    listnum = [int(f[1]) for f in colums]
+    listlet = [g[0] for g in colums]
+    listcom = list(zip(listlet, listnum))
 
+    dic9 = {}
+
+    for num3 in listcom:
+      if num3[1] in dic9.keys():
+
+        if num3[0] not in dic9[num3[1]]:
+          dic9[num3[1]].append(num3[0])
+
+      else:
+        dic9[num3[1]] = [num3[0]]
+
+    tupla4 = [(key, sorted(valor)) for key, valor in dic9.items()]
+    tupla4.sort()
+
+    return tupla4
+  
 
 def pregunta_09():
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
-
     Rta/
     {
         "aaa": 13,
@@ -195,16 +298,26 @@ def pregunta_09():
         "iii": 18,
         "jjj": 18,
     }
-
     """
-    return
+    data = [row[4].split(',') for row in colums]
+    data = [item for sublist in data for item in sublist]
 
+    dic8 = {}
+    for letter8 in data:
+      codigo = letter8.split(':')[0]
 
+      if codigo in dic8.keys():
+        dic8[codigo] = dic8[codigo] +1 
+      else:
+        dic8[codigo] = 1
+      
+    return dic8
+
+  
 def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
-
     Rta/
     [
         ("E", 3, 5),
@@ -215,17 +328,21 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]
-
-
     """
-    return
+    t = [len(m[3].replace(",","")) for m in colums]
+    u = [len(n[4].split(",")) for n in colums]
+
+    list3 = [f[0] for f in colums]
+
+    listfin = list(zip(list3, t, u))
+    
+    return listfin
 
 
 def pregunta_11():
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
-
     Rta/
     {
         "a": 122,
@@ -236,10 +353,20 @@ def pregunta_11():
         "f": 134,
         "g": 35,
     }
-
-
     """
-    return
+    list4 = []
+    for p in colums:
+      list4.append([p[1], p[3].split(",")])
+
+    dic6 ={}
+    for row in list4:
+      for p in row[1]:
+        if p in dic6:
+          dic6[p] += int(row[0])
+        else:
+          dic6[p] = int(row[0])
+
+    return dic6
 
 
 def pregunta_12():
@@ -257,4 +384,28 @@ def pregunta_12():
     }
 
     """
-    return
+
+    data1 = [row[4].split(',') for row in colums]
+
+    list9 = []
+
+    numero1=0
+    for letter9 in data1:
+      for r in letter9:
+        numero = int(r.split(':')[1])
+        numero1 += numero
+      list9.append(numero1)
+      numero1=0
+
+    list10 = [f[0] for f in colums]
+    listot = list(zip(list10, list9))
+
+    dic9 = {}
+
+    for sum2 in listot:
+      if sum2[0] in dic9.keys():
+        dic9[sum2[0]] = dic9[sum2[0]] + (sum2[1])
+      else:  
+        dic9[sum2[0]] = (sum2[1])
+
+    return dic9
